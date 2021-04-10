@@ -23,7 +23,7 @@ class Face(
     val normal: Vector3f,
 )
 
-class Model(
+class QuadModel(
     val faces: Array<Face>,
 ) {
     fun render(

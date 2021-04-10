@@ -3,6 +3,7 @@
   "package": "spazzylemons.protoplayermodels.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "CuboidsAccessorMixin"
   ],
   "client": [
     "RenderMixin"

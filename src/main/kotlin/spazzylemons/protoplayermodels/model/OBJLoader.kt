@@ -2,19 +2,20 @@ package spazzylemons.protoplayermodels.model
 
 import net.minecraft.client.util.math.Vector3f
 import java.io.Reader
+import java.nio.charset.Charset
 
 object OBJLoader {
-    fun load(resource: Reader): Model {
+    fun load(data: Reader): QuadModel {
         val vertices = mutableListOf<Vector3f>()
         val uvs = mutableListOf<UVCoordinate>()
         val normals = mutableListOf<Vector3f>()
         val faces = mutableListOf<Face>()
 
-        resource.forEachLine { line ->
+        data.forEachLine { line ->
             when {
                 line.startsWith("v ") -> {
                     val (x, y, z) = line.split(' ').drop(1).map(String::toFloat)
-                    vertices += Vector3f(x, -y, z) // Flip Y coordinate
+                    vertices += Vector3f(x, -y, -z) // Flip some coordinates?
                 }
                 line.startsWith("vt ") -> {
                     val (u, v) = line.split(' ').drop(1).map(String::toFloat)
@@ -22,7 +23,7 @@ object OBJLoader {
                 }
                 line.startsWith("vn ") -> {
                     val (x, y, z) = line.split(' ').drop(1).map(String::toFloat)
-                    normals += Vector3f(x, -y, z) // Flip Y coordinate
+                    normals += Vector3f(x, -y, -z) // Flip some coordinates?
                 }
                 line.startsWith("f ") -> {
                     val normal = Vector3f()
@@ -36,6 +37,10 @@ object OBJLoader {
                 }
             }
         }
-        return Model(faces.toTypedArray())
+        return QuadModel(faces.toTypedArray())
+    }
+
+    fun load(resourceName: String) = this::class.java.classLoader.getResource(resourceName)?.openStream()?.use {
+        load(it.reader(Charset.defaultCharset()))
     }
 }
