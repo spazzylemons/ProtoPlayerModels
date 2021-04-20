@@ -11,12 +11,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import spazzylemons.protoplayermodels.client.ClientData;
+import spazzylemons.protoplayermodels.config.ConfigScreen;
 
 @Environment(EnvType.CLIENT)
 @Mixin(SkinOptionsScreen.class)
-public class ProtogenToggleMixin extends Screen {
-    protected ProtogenToggleMixin() {
+public class SkinOptionsMixin extends Screen {
+    protected SkinOptionsMixin() {
         super(null);
     }
 
@@ -28,17 +28,19 @@ public class ProtogenToggleMixin extends Screen {
     public void init(CallbackInfo ci, int i) {
         i += 2;
         ButtonWidget button = new ButtonWidget(
-                this.width / 2 - 100,
-                this.height / 6 + 24 * (i >> 1),
+                width / 2 - 100,
+                height / 6 + 24 * (i >> 1),
                 200,
                 20,
-                Text.of("Toggle Protogen Model"),
+                Text.of("ProtoPlayerModels settings..."),
                 this::onClick
         );
         this.addButton(button);
     }
 
     private void onClick(ButtonWidget button) {
-        ClientData.INSTANCE.setEnabled(!ClientData.INSTANCE.isEnabled());
+        if (client != null) {
+            client.openScreen(new ConfigScreen(this));
+        }
     }
 }

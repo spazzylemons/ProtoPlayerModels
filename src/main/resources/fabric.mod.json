@@ -19,6 +19,9 @@
   "entrypoints": {
     "main": [
       "spazzylemons.protoplayermodels.MainKt::init"
+    ],
+    "modmenu": [
+      "spazzylemons.protoplayermodels.ModMenuIntegration"
     ]
   },
   "mixins": [

@@ -21,7 +21,7 @@ public class RenderMixin {
     private <T extends Entity> void getRenderer(T entity, CallbackInfoReturnable<EntityRenderer<? super T>> cir) {
         // TODO do only on current player
         if (entity instanceof PlayerEntity) {
-            if (ClientData.INSTANCE.isEnabled()) {
+            if (ClientData.INSTANCE.getSettings().isEnabled()) {
                 ProtogenPlayerEntityRenderer renderer = ClientData.INSTANCE.getRenderer();
                 if (renderer != null) {
                     cir.setReturnValue((EntityRenderer<? super T>) renderer);

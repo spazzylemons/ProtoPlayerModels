@@ -17,6 +17,7 @@ minecraft {
 
 repositories {
     maven { url = "http://maven.fabricmc.net/" }
+    maven { url = "https://maven.terraformersmc.com/releases/" }
 }
 
 dependencies {
@@ -32,6 +33,9 @@ dependencies {
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.
+
+    // add mod menu api
+    modCompileOnly "com.terraformersmc:modmenu:1.16.9"
 }
 
 processResources {
