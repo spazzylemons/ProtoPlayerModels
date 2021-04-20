@@ -16,19 +16,15 @@ class ConfigScreen(private val parent: Screen) : Screen(Text.of("ProtoPlayerMode
 
         fun sectionBreak() = ++i
 
-        val isEnabledButton = button(createIsEnabledText()) {
+        button(createIsEnabledText()) {
             ClientData.settings = ClientData.settings.copy(isEnabled = !ClientData.settings.isEnabled)
-            ClientData.settings.save()
+            try {
+                ClientData.settings.save()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // too bad, let's not crash the game if this happens, ok?
+            }
             it.message = createIsEnabledText()
-        }
-
-        sectionBreak()
-
-        button(Text.of("Reload from file")) {
-            ClientData.settings = loadSettings()
-
-            // need to reload messages on applicable buttons
-            isEnabledButton.message = createIsEnabledText()
         }
 
         sectionBreak()
