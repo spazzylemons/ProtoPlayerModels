@@ -15,16 +15,17 @@ import spazzylemons.protoplayermodels.render.ProtogenPlayerEntityRenderer;
 
 @Environment(EnvType.CLIENT)
 @Mixin(EntityRenderDispatcher.class)
-// Mixins HAVE to be written in java due to constraints in the mixin system.
 public class RenderMixin {
     @Inject(at = @At("HEAD"), method = "getRenderer", cancellable = true)
     @SuppressWarnings("unchecked cast") // TODO see if this warning can be removed
-    private <T extends Entity> void init(T entity, CallbackInfoReturnable<EntityRenderer<? super T>> cir) {
+    private <T extends Entity> void getRenderer(T entity, CallbackInfoReturnable<EntityRenderer<? super T>> cir) {
         // TODO do only on current player
         if (entity instanceof PlayerEntity) {
-            ProtogenPlayerEntityRenderer renderer = ClientData.INSTANCE.getRenderer();
-            if (renderer != null) {
-                cir.setReturnValue((EntityRenderer<? super T>) renderer);
+            if (ClientData.INSTANCE.isEnabled()) {
+                ProtogenPlayerEntityRenderer renderer = ClientData.INSTANCE.getRenderer();
+                if (renderer != null) {
+                    cir.setReturnValue((EntityRenderer<? super T>) renderer);
+                }
             }
         }
     }

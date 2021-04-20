@@ -2,10 +2,9 @@
   "required": true,
   "package": "spazzylemons.protoplayermodels.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "CuboidsAccessorMixin"
-  ],
   "client": [
+    "CuboidsAccessorMixin",
+    "ProtogenToggleMixin",
     "RenderMixin"
   ],
   "injectors": {
