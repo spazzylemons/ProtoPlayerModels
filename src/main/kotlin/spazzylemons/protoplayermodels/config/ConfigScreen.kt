@@ -5,30 +5,29 @@ import net.minecraft.client.gui.screen.ScreenTexts
 import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.Text
-import spazzylemons.protoplayermodels.client.ClientData
+import spazzylemons.protoplayermodels.model.ClientData
 
 class ConfigScreen(private val parent: Screen) : Screen(Text.of("ProtoPlayerModels configuration")) {
     override fun init() {
         var i = 0
 
+        /** Add a button */
         fun button(text: Text, action: ButtonWidget.PressAction) =
             addButton(ButtonWidget(width / 2 - 100, height / 6 + 24 * i++, 200, 20, text, action))
 
+        /** Add a section break */
         fun sectionBreak() = ++i
 
+        // Toggle whether model is enabled
         button(createIsEnabledText()) {
             ClientData.settings = ClientData.settings.copy(isEnabled = !ClientData.settings.isEnabled)
-            try {
-                ClientData.settings.save()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                // too bad, let's not crash the game if this happens, ok?
-            }
+            ClientData.settings.save()
             it.message = createIsEnabledText()
         }
 
         sectionBreak()
 
+        // Close screen
         button(ScreenTexts.DONE) {
             client?.openScreen(parent)
         }

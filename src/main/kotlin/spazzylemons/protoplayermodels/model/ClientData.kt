@@ -1,4 +1,4 @@
-package spazzylemons.protoplayermodels.client
+package spazzylemons.protoplayermodels.model
 
 import net.minecraft.client.MinecraftClient
 import spazzylemons.protoplayermodels.config.loadSettings

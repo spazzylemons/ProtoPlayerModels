@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import spazzylemons.protoplayermodels.client.ClientData;
+import spazzylemons.protoplayermodels.model.ClientData;
 import spazzylemons.protoplayermodels.render.ProtogenPlayerEntityRenderer;
 
 @Environment(EnvType.CLIENT)

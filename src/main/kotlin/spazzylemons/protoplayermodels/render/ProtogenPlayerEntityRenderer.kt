@@ -7,6 +7,7 @@ import net.minecraft.client.render.entity.PlayerEntityRenderer
 import net.minecraft.client.texture.NativeImage
 import net.minecraft.client.texture.NativeImageBackedTexture
 import net.minecraft.util.Identifier
+import spazzylemons.protoplayermodels.MOD_ID
 
 class ProtogenPlayerEntityRenderer(dispatcher: EntityRenderDispatcher) : PlayerEntityRenderer(dispatcher) {
     init {
@@ -16,7 +17,7 @@ class ProtogenPlayerEntityRenderer(dispatcher: EntityRenderDispatcher) : PlayerE
     override fun getTexture(abstractClientPlayerEntity: AbstractClientPlayerEntity?) = TEXTURE_IDENTIFIER
 
     companion object {
-        val TEXTURE_IDENTIFIER = Identifier("protoplayermodels", "proto")
+        val TEXTURE_IDENTIFIER = Identifier(MOD_ID, "proto")
 
         init {
             // NativeImage.read will close the resource for us.
