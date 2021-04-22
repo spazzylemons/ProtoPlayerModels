@@ -4,8 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "client": [
     "CuboidsAccessorMixin",
-    "SkinOptionsMixin",
-    "RenderMixin"
+    "PlayerMixin",
+    "RenderMixin",
+    "SkinOptionsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
